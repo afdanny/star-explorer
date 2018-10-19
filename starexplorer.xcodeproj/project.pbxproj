@@ -20,6 +20,8 @@
 		300592422178E40C00631B61 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592412178E40C00631B61 /* Film.swift */; };
 		300592442178E43B00631B61 /* PlanetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592432178E43B00631B61 /* PlanetsTableViewController.swift */; };
 		300592462178E45600631B61 /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592452178E45600631B61 /* PlanetViewController.swift */; };
+		3005924A2179005B00631B61 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592492179005B00631B61 /* PlanetCell.swift */; };
+		F0F07FF075E37E1BD1974E5E /* Pods_starexplorer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55406621EA4AAEEFD87F694 /* Pods_starexplorer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,10 @@
 		300592412178E40C00631B61 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		300592432178E43B00631B61 /* PlanetsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsTableViewController.swift; sourceTree = "<group>"; };
 		300592452178E45600631B61 /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
+		300592492179005B00631B61 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
+		39061ECB5B508DDEBD11E333 /* Pods-starexplorer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-starexplorer.release.xcconfig"; path = "Pods/Target Support Files/Pods-starexplorer/Pods-starexplorer.release.xcconfig"; sourceTree = "<group>"; };
+		EB35B815DC6FC1517AAB46AA /* Pods-starexplorer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-starexplorer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-starexplorer/Pods-starexplorer.debug.xcconfig"; sourceTree = "<group>"; };
+		F55406621EA4AAEEFD87F694 /* Pods_starexplorer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_starexplorer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F07FF075E37E1BD1974E5E /* Pods_starexplorer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19DA29792FCAC3A900792907 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB35B815DC6FC1517AAB46AA /* Pods-starexplorer.debug.xcconfig */,
+				39061ECB5B508DDEBD11E333 /* Pods-starexplorer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		300591FD2178E07200631B61 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +109,8 @@
 				3005921D2178E07300631B61 /* starexplorerTests */,
 				300592282178E07300631B61 /* starexplorerUITests */,
 				300592072178E07200631B61 /* Products */,
+				19DA29792FCAC3A900792907 /* Pods */,
+				EEAC603720F91C7EB7C64168 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,8 +179,9 @@
 		300592392178E1DD00631B61 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				300592122178E07300631B61 /* LaunchScreen.storyboard */,
 				3005920D2178E07200631B61 /* Main.storyboard */,
+				300592122178E07300631B61 /* LaunchScreen.storyboard */,
+				300592492179005B00631B61 /* PlanetCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +194,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		EEAC603720F91C7EB7C64168 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F55406621EA4AAEEFD87F694 /* Pods_starexplorer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,9 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3005922E2178E07300631B61 /* Build configuration list for PBXNativeTarget "starexplorer" */;
 			buildPhases = (
+				5A8A1DBFC3EE193197482C1B /* [CP] Check Pods Manifest.lock */,
 				300592022178E07200631B61 /* Sources */,
 				300592032178E07200631B61 /* Frameworks */,
 				300592042178E07200631B61 /* Resources */,
+				5E3E82A401C4F57C07EA7BA5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,6 +330,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5A8A1DBFC3EE193197482C1B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-starexplorer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E3E82A401C4F57C07EA7BA5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-starexplorer/Pods-starexplorer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-starexplorer/Pods-starexplorer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		300592022178E07200631B61 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -312,6 +388,7 @@
 				3005923C2178E39600631B61 /* SWAPIClient.swift in Sources */,
 				3005920A2178E07200631B61 /* AppDelegate.swift in Sources */,
 				3005923E2178E3CB00631B61 /* Planet.swift in Sources */,
+				3005924A2179005B00631B61 /* PlanetCell.swift in Sources */,
 				300592402178E3F200631B61 /* People.swift in Sources */,
 				300592442178E43B00631B61 /* PlanetsTableViewController.swift in Sources */,
 			);
@@ -486,6 +563,7 @@
 		};
 		3005922F2178E07300631B61 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB35B815DC6FC1517AAB46AA /* Pods-starexplorer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -503,6 +581,7 @@
 		};
 		300592302178E07300631B61 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39061ECB5B508DDEBD11E333 /* Pods-starexplorer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
