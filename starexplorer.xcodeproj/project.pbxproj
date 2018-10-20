@@ -21,6 +21,9 @@
 		300592442178E43B00631B61 /* PlanetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592432178E43B00631B61 /* PlanetsTableViewController.swift */; };
 		300592462178E45600631B61 /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592452178E45600631B61 /* PlanetViewController.swift */; };
 		3005924A2179005B00631B61 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592492179005B00631B61 /* PlanetCell.swift */; };
+		30F9CF2B217B7CC000F71597 /* soloist1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30F9CF2A217B7CC000F71597 /* soloist1.ttf */; };
+		30F9CF2D217B7CE700F71597 /* soloistout.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30F9CF2C217B7CE700F71597 /* soloistout.ttf */; };
+		30F9CF2F217B7DFC00F71597 /* SF Distant Galaxy Symbols.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30F9CF2E217B7DFC00F71597 /* SF Distant Galaxy Symbols.ttf */; };
 		F0F07FF075E37E1BD1974E5E /* Pods_starexplorer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55406621EA4AAEEFD87F694 /* Pods_starexplorer.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +65,9 @@
 		300592432178E43B00631B61 /* PlanetsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsTableViewController.swift; sourceTree = "<group>"; };
 		300592452178E45600631B61 /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
 		300592492179005B00631B61 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
+		30F9CF2A217B7CC000F71597 /* soloist1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = soloist1.ttf; sourceTree = "<group>"; };
+		30F9CF2C217B7CE700F71597 /* soloistout.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = soloistout.ttf; sourceTree = "<group>"; };
+		30F9CF2E217B7DFC00F71597 /* SF Distant Galaxy Symbols.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF Distant Galaxy Symbols.ttf"; sourceTree = "<group>"; };
 		39061ECB5B508DDEBD11E333 /* Pods-starexplorer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-starexplorer.release.xcconfig"; path = "Pods/Target Support Files/Pods-starexplorer/Pods-starexplorer.release.xcconfig"; sourceTree = "<group>"; };
 		EB35B815DC6FC1517AAB46AA /* Pods-starexplorer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-starexplorer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-starexplorer/Pods-starexplorer.debug.xcconfig"; sourceTree = "<group>"; };
 		F55406621EA4AAEEFD87F694 /* Pods_starexplorer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_starexplorer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +133,7 @@
 		300592082178E07200631B61 /* starexplorer */ = {
 			isa = PBXGroup;
 			children = (
+				30F9CF27217B7C6F00F71597 /* Fonts */,
 				3005923A2178E22000631B61 /* Services */,
 				300592392178E1DD00631B61 /* Views */,
 				300592382178E1D300631B61 /* Models */,
@@ -192,6 +199,16 @@
 				3005923B2178E39600631B61 /* SWAPIClient.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		30F9CF27217B7C6F00F71597 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				30F9CF2E217B7DFC00F71597 /* SF Distant Galaxy Symbols.ttf */,
+				30F9CF2C217B7CE700F71597 /* soloistout.ttf */,
+				30F9CF2A217B7CC000F71597 /* soloist1.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		EEAC603720F91C7EB7C64168 /* Frameworks */ = {
@@ -310,6 +327,9 @@
 			files = (
 				300592142178E07300631B61 /* LaunchScreen.storyboard in Resources */,
 				300592112178E07300631B61 /* Assets.xcassets in Resources */,
+				30F9CF2F217B7DFC00F71597 /* SF Distant Galaxy Symbols.ttf in Resources */,
+				30F9CF2B217B7CC000F71597 /* soloist1.ttf in Resources */,
+				30F9CF2D217B7CE700F71597 /* soloistout.ttf in Resources */,
 				3005920F2178E07200631B61 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
