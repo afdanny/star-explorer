@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UISearchDisplayDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -25,7 +26,7 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
         planetsTableView.delegate = self
         planetsTableView.dataSource = self
         
-                searchBar.delegate = self
+        searchBar.delegate = self
         planetsTableView.tableHeaderView = UIView()
         navigationItem.titleView = searchBar
         searchBar.showsScopeBar = false
@@ -33,7 +34,6 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
         
         activityIndicatorView = UIActivityIndicatorView(style: .gray)
         planetsTableView.backgroundView = activityIndicatorView
-        
         
         // Load planets
         loadPlanets();
@@ -50,50 +50,55 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
                 // Decode and display planets
                 let newPlanets = try! JSONDecoder().decode([Planet].self, from: String(describing: json["results"]).data(using: .utf8)!)
                 self.planets.append(contentsOf: newPlanets)
-                self.planetsTableView.reloadData()
                 self.nextPlanetsUrl = json["next"].rawString()
-                if self.nextPlanetsUrl != nil{
+                if self.nextPlanetsUrl != "null"{
                     self.loadMorePlanets()
-                }
-                self.loadingPlanets = false;
-                self.planetsTableView.separatorStyle = .singleLine
-                self.activityIndicatorView.stopAnimating()
-            }
-        }, onFailure: { error in
-            let alert = UIAlertController(title: "Error", message: "Failed to loading planets", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-            self.show(alert, sender: nil)
-            self.loadingPlanets = false;
-            self.planetsTableView.separatorStyle = .singleLine
-            self.activityIndicatorView.stopAnimating()
-        })
-    }
-    
-    func loadMorePlanets(){
-        planetsTableView.separatorStyle = .none
-        activityIndicatorView.startAnimating()
-            self.loadingPlanets = true;
-            SWAPIClient.sharedInstance.getPlanetsByPage(pageUrl: self.nextPlanetsUrl!, onSuccess: { json in
-                DispatchQueue.main.sync {
-                    // Decode and display planets
-                    let newPlanets = try! JSONDecoder().decode([Planet].self, from: String(describing: json["results"]).data(using: .utf8)!)
-                    self.planets.append(contentsOf: newPlanets)
-                    self.planetsTableView.reloadData()
-                    if self.nextPlanetsUrl != nil{
-                        self.loadMorePlanets()
-                    }
+                }else{
                     self.loadingPlanets = false;
                     self.planetsTableView.separatorStyle = .singleLine
                     self.activityIndicatorView.stopAnimating()
                 }
-            }, onFailure: { error in
-                let alert = UIAlertController(title: "Error", message: "Failed to loading planets", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-                self.show(alert, sender: nil)
+            }
+        }, onFailure: { error in
+            print(error.localizedDescription)
+//            let alert = UIAlertController(title: "Error", message: "Failed to loading planets", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+//            self.show(alert, sender: nil)
+            DispatchQueue.main.sync {
+            self.loadingPlanets = false;
+            self.planetsTableView.separatorStyle = .singleLine
+            self.activityIndicatorView.stopAnimating()
+            }
+        })
+    }
+    
+    func loadMorePlanets(){
+        SWAPIClient.sharedInstance.getPlanetsByPage(pageUrl: self.nextPlanetsUrl!, onSuccess: { json in
+            DispatchQueue.main.sync {
+                // Decode and display planets
+                let newPlanets = try! JSONDecoder().decode([Planet].self, from: String(describing: json["results"]).data(using: .utf8)!)
+                self.planets.append(contentsOf: newPlanets)
+                self.nextPlanetsUrl = json["next"].rawString()
+                if self.nextPlanetsUrl != "null" {
+                    self.loadMorePlanets()
+                }else{
+                    self.planetsTableView.reloadData()
+                    self.loadingPlanets = false;
+                    self.planetsTableView.separatorStyle = .singleLine
+                    self.activityIndicatorView.stopAnimating()
+                }
+            }
+        }, onFailure: { error in
+            print(error.localizedDescription)
+//            let alert = UIAlertController(title: "Error", message: "Failed to loading planets", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+//            self.show(alert, sender: nil)
+            DispatchQueue.main.sync {
                 self.loadingPlanets = false;
                 self.planetsTableView.separatorStyle = .singleLine
                 self.activityIndicatorView.stopAnimating()
-            })
+            }
+        })
     }
     
     // MARK: - Table view data source
@@ -110,7 +115,7 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
         let cell = tableView.dequeueReusableCell(withIdentifier: "planetCell", for: indexPath) as! PlanetCell
         let planet = planets[indexPath.row]
         cell.name?.text = planet.name
-
+        
         return cell
     }
     
@@ -123,32 +128,35 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            if searchText != "" {
-                self.loadingPlanets = true
-                SWAPIClient.sharedInstance.searchPlanets(searchText: searchText, onSuccess: { json in
-                    DispatchQueue.main.sync {
-                        // Decode and display planets
-                        self.planets = [Planet]()
-                        let newPlanets = try! JSONDecoder().decode([Planet].self, from: String(describing: json["results"]).data(using: .utf8)!)
-                        self.planets.append(contentsOf: newPlanets)
-                        self.planetsTableView.reloadData()
-                        self.nextPlanetsUrl = json["next"].rawString()
-                        self.loadingPlanets = false;
-                        self.planetsTableView.separatorStyle = .singleLine
-                        self.activityIndicatorView.stopAnimating()
-                    }
-                }, onFailure: { error in
-                    let alert = UIAlertController(title: "Error", message: "Failed to loading planets", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-                    self.show(alert, sender: nil)
+        if searchText != "" {
+            self.loadingPlanets = true
+            SWAPIClient.sharedInstance.searchPlanets(searchText: searchText, onSuccess: { json in
+                DispatchQueue.main.sync {
+                    // Decode and display planets
+                    self.planets = [Planet]()
+                    let newPlanets = try! JSONDecoder().decode([Planet].self, from: String(describing: json["results"]).data(using: .utf8)!)
+                    self.planets.append(contentsOf: newPlanets)
+                    self.planetsTableView.reloadData()
+                    self.nextPlanetsUrl = json["next"].rawString()
                     self.loadingPlanets = false;
                     self.planetsTableView.separatorStyle = .singleLine
                     self.activityIndicatorView.stopAnimating()
-                })
-            }else {
-                self.loadPlanets()
-            }
-
+                }
+            }, onFailure: { error in
+                print(error.localizedDescription)
+                //            let alert = UIAlertController(title: "Error", message: "Failed to loading planets", preferredStyle: .alert)
+                //            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                //            self.show(alert, sender: nil)
+                DispatchQueue.main.sync {
+                    self.loadingPlanets = false;
+                    self.planetsTableView.separatorStyle = .singleLine
+                    self.activityIndicatorView.stopAnimating()
+                }
+            })
+        }else {
+            self.loadPlanets()
+        }
+        
     }
     
     
@@ -187,14 +195,22 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
      }
      */
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "planetSegue" {
+            if let indexPath = tableView.indexPathForSelectedRow{
+                let selectedRow = indexPath.row
+                let tabBarController = segue.destination as! UITabBarController
+                let planetVC = tabBarController.viewControllers![0] as! PlanetViewController
+                planetVC.planet = self.planets[selectedRow]
+                print(self.planets[selectedRow].name)
+            }        }
+    }
+    
     
 }
