@@ -1,5 +1,5 @@
 //
-//  MoviesViewController.swift
+//  ResidentsViewController.swift
 //  starexplorer
 //
 //  Created by Danny on 20.10.18.
@@ -8,42 +8,42 @@
 
 import UIKit
 
-class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ResidentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var filmsTableView: UITableView!
+    @IBOutlet weak var residentsTableView: UITableView!
     
     var activityIndicatorView: UIActivityIndicatorView!
-    var films:[Film] = [Film]()
-    var nextFilmsUrl: String?
+    var residents:[Resident] = [Resident]()
+    var nextresidentsUrl: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        filmsTableView.delegate = self
-        filmsTableView.dataSource = self
+        residentsTableView.delegate = self
+        residentsTableView.dataSource = self
         
         
         activityIndicatorView = UIActivityIndicatorView(style: .gray)
-        filmsTableView.backgroundView = activityIndicatorView
+        residentsTableView.backgroundView = activityIndicatorView
         
         // Load planets
-        loadFilms();
+        loadResidents();
     }
     
-    func loadFilms(){
-        filmsTableView.separatorStyle = .none
+    func loadResidents(){
+        residentsTableView.separatorStyle = .none
         activityIndicatorView.startAnimating()
         let planetView = self.tabBarController?.viewControllers?[0] as! PlanetViewController
-        for filmUrl in (planetView.planet?.films)!{
-            print(filmUrl)
-            SWAPIClient.sharedInstance.getFilmByUrl(filmUrl: filmUrl, onSuccess: { json in
+        for residentUrl in (planetView.planet?.residents)!{
+            print(residentUrl)
+            SWAPIClient.sharedInstance.getResidentByUrl(residentUrl: residentUrl, onSuccess: { json in
                 DispatchQueue.main.sync {
-                    let film = try! JSONDecoder().decode(Film.self, from: String(describing: json).data(using: .utf8)!)
-                    self.films.append(film)
-                    if(self.films.count == (planetView.planet?.films)!.count){
-                        self.films.sort() { $0.episode_id < $1.episode_id }
-                        self.filmsTableView.reloadData()
-                        self.filmsTableView.separatorStyle = .singleLine
+                    let resident = try! JSONDecoder().decode(Resident.self, from: String(describing: json).data(using: .utf8)!)
+                    self.residents.append(resident)
+                    if(self.residents.count == (planetView.planet?.residents)!.count){
+                        self.residents.sort() { $0.name < $1.name }
+                        self.residentsTableView.reloadData()
+                        self.residentsTableView.separatorStyle = .singleLine
                         self.activityIndicatorView.stopAnimating()
                     }
                 }
@@ -54,19 +54,25 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return films.count
+        return residents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as! FilmCell
-        let film = films[indexPath.row]
-        cell.lblEpisode?.text = String(film.episode_id)
-        cell.lblTitle?.text = film.title
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "residentCell", for: indexPath) as! ResidentCell
+        let resident = residents[indexPath.row]
+        cell.lblName?.text = resident.name
+        print(resident.name)
+        print(resident.gender)
+        if resident.gender == "male" {
+            cell.imageGender.image = UIImage(named:"MaleIcon")
+        }else if resident.gender == "female"{
+            cell.imageGender.image = UIImage(named:"FemaleIcon")
+        }else{
+            cell.imageGender.isHidden = true
+        }
         return cell
     }
     
@@ -78,7 +84,6 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.backgroundColor = UIColor.white
         }
     }
-
     
 
     /*

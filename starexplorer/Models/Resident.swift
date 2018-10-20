@@ -8,6 +8,8 @@
 
 import UIKit
 
-class People: NSObject {
+class Resident: Codable {
 
+    let name: String
+    let gender: String
 }

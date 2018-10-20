@@ -144,18 +144,64 @@
         <!--Residents-->
         <scene sceneID="JRc-k2-fFg">
             <objects>
-                <viewController id="50i-Pg-X1b" sceneMemberID="viewController">
+                <viewController id="50i-Pg-X1b" customClass="ResidentsViewController" customModule="starexplorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e2S-0E-lhz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zvs-BU-Pio">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="residentCell" rowHeight="61" id="z7f-uy-DAG" customClass="ResidentCell" customModule="starexplorer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="61"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z7f-uy-DAG" id="Rub-Pi-WjH">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs3-5x-b7u">
+                                                    <rect key="frame" x="28" y="20" width="45" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaleIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bqh-L1-23v">
+                                                    <rect key="frame" x="365" y="20" width="21" height="21"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hs3-5x-b7u" firstAttribute="leading" secondItem="Rub-Pi-WjH" secondAttribute="leadingMargin" constant="8" id="7ge-Wf-dD3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bqh-L1-23v" secondAttribute="trailing" constant="8" id="Ajy-Se-A3m"/>
+                                                <constraint firstItem="bqh-L1-23v" firstAttribute="centerY" secondItem="Rub-Pi-WjH" secondAttribute="centerY" id="fbS-68-3f8"/>
+                                                <constraint firstItem="hs3-5x-b7u" firstAttribute="centerY" secondItem="Rub-Pi-WjH" secondAttribute="centerY" id="x1A-fg-DDc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageGender" destination="bqh-L1-23v" id="oG4-SB-p7D"/>
+                                            <outlet property="lblName" destination="hs3-5x-b7u" id="AjV-en-3SN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zvs-BU-Pio" firstAttribute="top" secondItem="oTB-Wr-fCf" secondAttribute="top" id="2lO-fc-kQb"/>
+                            <constraint firstItem="oTB-Wr-fCf" firstAttribute="bottom" secondItem="Zvs-BU-Pio" secondAttribute="bottom" id="5I3-Pv-2p7"/>
+                            <constraint firstItem="Zvs-BU-Pio" firstAttribute="leading" secondItem="oTB-Wr-fCf" secondAttribute="leading" id="JJR-eM-Cwf"/>
+                            <constraint firstItem="oTB-Wr-fCf" firstAttribute="trailing" secondItem="Zvs-BU-Pio" secondAttribute="trailing" id="xPa-jE-uvH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oTB-Wr-fCf"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Residents" image="ResidentIcon" id="Cjx-8g-Y1R"/>
+                    <connections>
+                        <outlet property="residentsTableView" destination="Zvs-BU-Pio" id="5DD-DK-jhL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7t-oV-95p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2534" y="35"/>
+            <point key="canvasLocation" x="2533.3333333333335" y="34.821428571428569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="dDn-dw-sbe">
@@ -550,6 +596,7 @@
     <resources>
         <image name="ClimateIcon" width="42.5" height="42.5"/>
         <image name="InfosIcon" width="21" height="21"/>
+        <image name="MaleIcon" width="21" height="21"/>
         <image name="MovieIcon" width="21" height="21"/>
         <image name="PlanetHeader" width="800" height="400"/>
         <image name="ResidentIcon" width="21" height="21"/>
