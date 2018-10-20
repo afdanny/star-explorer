@@ -8,6 +8,9 @@
 
 import UIKit
 
-class Film: NSObject {
-
+class Film: Codable {
+    
+    let title : String
+    let episode_id : Int
+    
 }

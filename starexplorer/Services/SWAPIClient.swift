@@ -14,6 +14,7 @@ class SWAPIClient {
     let baseURL = "https://swapi.co/api"
     static let sharedInstance = SWAPIClient()
     static let getPlanetsEndpoint = "/planets/"
+    static let getFilmsEndpoint = "/films/"
     static let searchEndpoint = "?search="
     
     func getPlanets(onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
@@ -57,6 +58,26 @@ class SWAPIClient {
     
     func searchPlanets(searchText:String, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
         let url : String = baseURL + SWAPIClient.getPlanetsEndpoint + SWAPIClient.searchEndpoint + searchText
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL)
+        request.httpMethod = "GET"
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if(error != nil){
+                onFailure(error!)
+            } else{
+                do{
+                    let jsonData = try JSON(data: data!)
+                    onSuccess(jsonData)
+                }catch{
+                    onFailure(error)
+                }
+            }
+        })
+        task.resume()
+    }
+    
+    func getFilmByUrl(filmUrl: String, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
+        let url : String = filmUrl
         let request: NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL)
         request.httpMethod = "GET"
         let session = URLSession.shared
