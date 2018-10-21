@@ -143,7 +143,7 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
         planetsTableView.separatorStyle = .none
         activityIndicatorView.startAnimating()
         if searchText != "" {
-            SWAPIClient.sharedInstance.searchPlanets(searchText: searchText, onSuccess: { json in
+            SWAPIClient.sharedInstance.searchPlanets(searchText: searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!, onSuccess: { json in
                 DispatchQueue.main.sync {
                     // Decode and display planets
                     let newPlanets = try! JSONDecoder().decode([Planet].self, from: String(describing: json["results"]).data(using: .utf8)!)
