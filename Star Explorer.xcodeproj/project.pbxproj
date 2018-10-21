@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3005920A2178E07200631B61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300592092178E07200631B61 /* AppDelegate.swift */; };
-		3005920C2178E07200631B61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3005920B2178E07200631B61 /* ViewController.swift */; };
 		3005920F2178E07200631B61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3005920D2178E07200631B61 /* Main.storyboard */; };
 		300592112178E07300631B61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 300592102178E07300631B61 /* Assets.xcassets */; };
 		300592142178E07300631B61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 300592122178E07300631B61 /* LaunchScreen.storyboard */; };
@@ -51,7 +50,6 @@
 /* Begin PBXFileReference section */
 		300592062178E07200631B61 /* starexplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = starexplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		300592092178E07200631B61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3005920B2178E07200631B61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3005920E2178E07200631B61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		300592102178E07300631B61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		300592132178E07300631B61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 				300592382178E1D300631B61 /* Models */,
 				300592372178E16A00631B61 /* Controllers */,
 				300592092178E07200631B61 /* AppDelegate.swift */,
-				3005920B2178E07200631B61 /* ViewController.swift */,
 				300592102178E07300631B61 /* Assets.xcassets */,
 				300592152178E07300631B61 /* Info.plist */,
 			);
@@ -416,7 +413,6 @@
 			files = (
 				30F9CF33217B90B300F71597 /* FilmsViewController.swift in Sources */,
 				300592462178E45600631B61 /* PlanetViewController.swift in Sources */,
-				3005920C2178E07200631B61 /* ViewController.swift in Sources */,
 				30F9CF35217BA48D00F71597 /* ResidentCell.swift in Sources */,
 				300592422178E40C00631B61 /* Film.swift in Sources */,
 				3005923C2178E39600631B61 /* SWAPIClient.swift in Sources */,
