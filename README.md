@@ -9,11 +9,18 @@ Planet data is retrieved from [SWAPI](https://swapi.co).
 ![DEMO GIF](https://media.giphy.com/media/xjLnWwxUGVjnKrhbjT/giphy.gif)
 
 ## Installation
-### Requirements
+### Tutorial - Web IPA
+#### Requirements
+ * iOS 10 or later
+ #### Step-by-step
+ * Install Star Explorer with [diawi](https://i.diawi.com/9C8oFf)
+### Tutorial - XCode
+#### Requirements
  * macOS High sierra or later
  * Xcode 9.3 or later
+ * iOS 10 or later
  * [CocoaPods](https://cocoapods.org)
-### Tutorial
+#### Step-by-step
 1. Clone this repository
 2. Install the dependencies
 ```
