@@ -26,7 +26,7 @@ class ResidentsViewController: UIViewController, UITableViewDataSource, UITableV
         activityIndicatorView = UIActivityIndicatorView(style: .gray)
         residentsTableView.backgroundView = activityIndicatorView
         
-        // Load planets
+        // Load residents
         let planetView = self.tabBarController?.viewControllers?[0] as! PlanetViewController
         if (planetView.planet?.residents.count)! > 0 {
             loadResidents();
@@ -50,14 +50,26 @@ class ResidentsViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                 }
             }, onFailure: { error in
-                print(error.localizedDescription)
+                DispatchQueue.main.sync {
+                    self.showErrorMessage(message : "No internet access")
+                    self.residentsTableView.separatorStyle = .singleLine
+                    self.activityIndicatorView.stopAnimating()
+                }
             })
         }
     }
     
+    func showErrorMessage(message : String) {
+        let errorAlert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
+        errorAlert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { (action: UIAlertAction!) in
+            self.loadResidents()
+        }))
+        present(errorAlert, animated: true, completion: nil)
+    }
+    
     
     // MARK: - Table view data source
-        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return residents.count
     }
@@ -84,16 +96,4 @@ class ResidentsViewController: UIViewController, UITableViewDataSource, UITableV
             cell.backgroundColor = UIColor.white
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -26,7 +26,7 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicatorView = UIActivityIndicatorView(style: .gray)
         filmsTableView.backgroundView = activityIndicatorView
         
-        // Load planets
+        // Load films
         let planetView = self.tabBarController?.viewControllers?[0] as! PlanetViewController
         if (planetView.planet?.films.count)! > 0 {
             loadFilms();
@@ -50,16 +50,24 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
                     }
                 }
             }, onFailure: { error in
-                print(error.localizedDescription)
+                DispatchQueue.main.sync {
+                    self.showErrorMessage(message : "No internet access")
+                    self.filmsTableView.separatorStyle = .singleLine
+                    self.activityIndicatorView.stopAnimating()
+                }
             })
         }
     }
     
-    
+    func showErrorMessage(message : String) {
+        let errorAlert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
+        errorAlert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { (action: UIAlertAction!) in
+            self.loadFilms()
+        }))
+        present(errorAlert, animated: true, completion: nil)
+    }
     
     // MARK: - Table view data source
-
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return films.count
     }
@@ -69,7 +77,6 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
         let film = films[indexPath.row]
         cell.lblEpisode?.text = String(film.episode_id)
         cell.lblTitle?.text = film.title
-        
         return cell
     }
     
@@ -81,17 +88,4 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.backgroundColor = UIColor.white
         }
     }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -42,23 +42,12 @@ class PlanetViewController: UIViewController {
         super.viewDidLoad()
         
         loadData()
-        
-        // Do any additional setup after loading the view.
     }
 
     
     func loadData(){
+        // Display all information fields of the planet
         if let p = planet{
-//            lblPlanetName.text = p.name
-//            lblClimate.text = p.climate
-//            lblRotationPeriod.text = (Int(p.rotation_period)?.formattedWithSeparator)! + " hours"
-//            lblOrbitalPeriod.text = (Int(p.orbital_period)?.formattedWithSeparator)! + " days"
-//            lblDiameter.text = (Int(p.diameter)?.formattedWithSeparator)! + " km"
-//            lblGravity.text = p.gravity + " Gs"
-//            lblPopulation.text = Int(p.population)?.formattedWithSeparator
-//            lblSurfaceWater.text = p.surface_water + "%"
-//            lblTerrain.text = p.terrain
-            
             lblPlanetName.text = p.name
             lblClimate.text = p.climate
             if p.rotation_period != "unknown" && p.rotation_period != "N/A" {
@@ -103,16 +92,4 @@ class PlanetViewController: UIViewController {
         }
 
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
