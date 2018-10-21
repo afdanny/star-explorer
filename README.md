@@ -11,7 +11,7 @@ Planet data is retrieved from [SWAPI](https://swapi.co).
 ## Installation
 ### Requirements
  * macOS High sierra or later
- * Xcode 9 or later
+ * Xcode 9.3 or later
  * [CocoaPods](https://cocoapods.org)
 ### Tutorial
 1. Clone this repository
