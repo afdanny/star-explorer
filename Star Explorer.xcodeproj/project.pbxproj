@@ -312,7 +312,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 300592012178E07200631B61 /* Build configuration list for PBXProject "starexplorer" */;
+			buildConfigurationList = 300592012178E07200631B61 /* Build configuration list for PBXProject "Star Explorer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -603,6 +603,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UFGT4SQH73;
 				INFOPLIST_FILE = starexplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -621,6 +622,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UFGT4SQH73;
 				INFOPLIST_FILE = starexplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -714,7 +716,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		300592012178E07200631B61 /* Build configuration list for PBXProject "starexplorer" */ = {
+		300592012178E07200631B61 /* Build configuration list for PBXProject "Star Explorer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3005922C2178E07300631B61 /* Debug */,

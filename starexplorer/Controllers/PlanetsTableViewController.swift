@@ -11,25 +11,23 @@ import UIKit
 
 class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UISearchDisplayDelegate{
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var planetsTableView: UITableView!
-    
+    @IBOutlet var btnSearch: UIBarButtonItem!
+
     
     var activityIndicatorView: UIActivityIndicatorView!
     var planets:[Planet] = [Planet]()
     var nextPlanetsUrl: String?
-    var loadingPlanets = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         planetsTableView.delegate = self
         planetsTableView.dataSource = self
+        planetsTableView.tableHeaderView = UIView()
         
         searchBar.delegate = self
-        planetsTableView.tableHeaderView = UIView()
-        navigationItem.titleView = searchBar
-        searchBar.showsScopeBar = false
         searchBar.placeholder = "Search planet by name"
         
         activityIndicatorView = UIActivityIndicatorView(style: .gray)
@@ -39,11 +37,16 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
         loadPlanets();
     }
     
+    @IBAction func searchClicked(_ sender: Any) {
+        self.navigationItem.rightBarButtonItem = nil
+        navigationItem.titleView = searchBar
+        searchBar.showsScopeBar = false
+        searchBar.becomeFirstResponder()
+    }
     
     func loadPlanets(){
         planetsTableView.separatorStyle = .none
         activityIndicatorView.startAnimating()
-        self.loadingPlanets = true
         SWAPIClient.sharedInstance.getPlanets(onSuccess: { json in
             DispatchQueue.main.sync {
                 self.planets = [Planet]()
@@ -54,7 +57,7 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
                 if self.nextPlanetsUrl != "null"{
                     self.loadMorePlanets()
                 }else{
-                    self.loadingPlanets = false;
+                    self.planetsTableView.reloadData()
                     self.planetsTableView.separatorStyle = .singleLine
                     self.activityIndicatorView.stopAnimating()
                 }
@@ -65,7 +68,6 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
 //            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
 //            self.show(alert, sender: nil)
             DispatchQueue.main.sync {
-            self.loadingPlanets = false;
             self.planetsTableView.separatorStyle = .singleLine
             self.activityIndicatorView.stopAnimating()
             }
@@ -83,7 +85,6 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
                     self.loadMorePlanets()
                 }else{
                     self.planetsTableView.reloadData()
-                    self.loadingPlanets = false;
                     self.planetsTableView.separatorStyle = .singleLine
                     self.activityIndicatorView.stopAnimating()
                 }
@@ -94,7 +95,6 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
 //            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
 //            self.show(alert, sender: nil)
             DispatchQueue.main.sync {
-                self.loadingPlanets = false;
                 self.planetsTableView.separatorStyle = .singleLine
                 self.activityIndicatorView.stopAnimating()
             }
@@ -104,7 +104,7 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+           return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,20 +127,26 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
         }
     }
     
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        planets = [Planet]()
+        planetsTableView.reloadData()
+        planetsTableView.separatorStyle = .none
+        activityIndicatorView.startAnimating()
         if searchText != "" {
-            self.loadingPlanets = true
             SWAPIClient.sharedInstance.searchPlanets(searchText: searchText, onSuccess: { json in
                 DispatchQueue.main.sync {
                     // Decode and display planets
-                    self.planets = [Planet]()
                     let newPlanets = try! JSONDecoder().decode([Planet].self, from: String(describing: json["results"]).data(using: .utf8)!)
                     self.planets.append(contentsOf: newPlanets)
-                    self.planetsTableView.reloadData()
                     self.nextPlanetsUrl = json["next"].rawString()
-                    self.loadingPlanets = false;
-                    self.planetsTableView.separatorStyle = .singleLine
-                    self.activityIndicatorView.stopAnimating()
+                    if self.nextPlanetsUrl != "null"{
+                        self.loadMorePlanets()
+                    }else{
+                        self.planetsTableView.reloadData()
+                        self.planetsTableView.separatorStyle = .singleLine
+                        self.activityIndicatorView.stopAnimating()
+                    }
                 }
             }, onFailure: { error in
                 print(error.localizedDescription)
@@ -148,7 +154,6 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
                 //            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
                 //            self.show(alert, sender: nil)
                 DispatchQueue.main.sync {
-                    self.loadingPlanets = false;
                     self.planetsTableView.separatorStyle = .singleLine
                     self.activityIndicatorView.stopAnimating()
                 }
@@ -157,6 +162,12 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
             self.loadPlanets()
         }
         
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.navigationItem.rightBarButtonItem = btnSearch
+        navigationItem.titleView = nil
+        loadPlanets()
     }
     
     
@@ -214,3 +225,5 @@ class PlanetsTableViewController: UITableViewController,UISearchBarDelegate, UIS
     
     
 }
+
+

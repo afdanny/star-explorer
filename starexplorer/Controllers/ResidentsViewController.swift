@@ -27,7 +27,10 @@ class ResidentsViewController: UIViewController, UITableViewDataSource, UITableV
         residentsTableView.backgroundView = activityIndicatorView
         
         // Load planets
-        loadResidents();
+        let planetView = self.tabBarController?.viewControllers?[0] as! PlanetViewController
+        if (planetView.planet?.residents.count)! > 0 {
+            loadResidents();
+        }
     }
     
     func loadResidents(){
@@ -35,7 +38,6 @@ class ResidentsViewController: UIViewController, UITableViewDataSource, UITableV
         activityIndicatorView.startAnimating()
         let planetView = self.tabBarController?.viewControllers?[0] as! PlanetViewController
         for residentUrl in (planetView.planet?.residents)!{
-            print(residentUrl)
             SWAPIClient.sharedInstance.getResidentByUrl(residentUrl: residentUrl, onSuccess: { json in
                 DispatchQueue.main.sync {
                     let resident = try! JSONDecoder().decode(Resident.self, from: String(describing: json).data(using: .utf8)!)
@@ -55,7 +57,7 @@ class ResidentsViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     // MARK: - Table view data source
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return residents.count
     }
@@ -64,8 +66,6 @@ class ResidentsViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "residentCell", for: indexPath) as! ResidentCell
         let resident = residents[indexPath.row]
         cell.lblName?.text = resident.name
-        print(resident.name)
-        print(resident.gender)
         if resident.gender == "male" {
             cell.imageGender.image = UIImage(named:"MaleIcon")
         }else if resident.gender == "female"{

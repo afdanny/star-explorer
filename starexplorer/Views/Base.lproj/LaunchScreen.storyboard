@@ -8,11 +8,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="soloist1.ttf">
-            <string>Soloist</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -22,25 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="goW-9e-DIk">
-                                <rect key="frame" x="46.5" y="229" width="282.5" height="209.5"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="tcp-6h-RrN">
-                                        <rect key="frame" x="56" y="0.0" width="170" height="170"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STAR EXPLORER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y43-mh-l1f">
-                                        <rect key="frame" x="0.0" y="178" width="282.5" height="31.5"/>
-                                        <fontDescription key="fontDescription" name="Soloist" family="Soloist" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="tcp-6h-RrN">
+                                <rect key="frame" x="102.5" y="248.5" width="170" height="170"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="goW-9e-DIk" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="PZA-DX-qhz"/>
-                            <constraint firstItem="goW-9e-DIk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RBI-E7-vLX"/>
+                            <constraint firstItem="tcp-6h-RrN" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vye-LC-A8d"/>
+                            <constraint firstItem="tcp-6h-RrN" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zKV-16-8Gh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

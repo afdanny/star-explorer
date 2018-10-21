@@ -27,7 +27,10 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
         filmsTableView.backgroundView = activityIndicatorView
         
         // Load planets
-        loadFilms();
+        let planetView = self.tabBarController?.viewControllers?[0] as! PlanetViewController
+        if (planetView.planet?.films.count)! > 0 {
+            loadFilms();
+        }
     }
     
     func loadFilms(){
@@ -35,7 +38,6 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicatorView.startAnimating()
         let planetView = self.tabBarController?.viewControllers?[0] as! PlanetViewController
         for filmUrl in (planetView.planet?.films)!{
-            print(filmUrl)
             SWAPIClient.sharedInstance.getFilmByUrl(filmUrl: filmUrl, onSuccess: { json in
                 DispatchQueue.main.sync {
                     let film = try! JSONDecoder().decode(Film.self, from: String(describing: json).data(using: .utf8)!)
@@ -56,6 +58,7 @@ class FilmsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     // MARK: - Table view data source
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return films.count

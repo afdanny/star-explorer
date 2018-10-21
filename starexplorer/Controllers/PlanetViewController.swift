@@ -61,18 +61,18 @@ class PlanetViewController: UIViewController {
             
             lblPlanetName.text = p.name
             lblClimate.text = p.climate
-            if p.rotation_period != "unknown" || p.rotation_period != "N/A" {
+            if p.rotation_period != "unknown" && p.rotation_period != "N/A" {
                 lblRotationPeriod.text = (Int(p.rotation_period)?.formattedWithSeparator)! + " hours"
             }else{
                 lblRotationPeriod.text = p.rotation_period
             }
-            if p.orbital_period != "unknown" || p.orbital_period != "N/A" {
+            if p.orbital_period != "unknown" && p.orbital_period != "N/A" {
                 lblOrbitalPeriod.text = (Int(p.orbital_period)?.formattedWithSeparator)! + " days"
             }else{
                 lblOrbitalPeriod.text = p.orbital_period
                 
             }
-            if p.diameter != "unknown" || p.diameter != "N/A" {
+            if p.diameter != "unknown" && p.diameter != "N/A" {
                 lblDiameter.text = (Int(p.diameter)?.formattedWithSeparator)! + " km"
             }else{
                 lblDiameter.text = p.diameter
@@ -81,19 +81,19 @@ class PlanetViewController: UIViewController {
             if p.gravity == "1"{
                 lblGravity.text = p.gravity + " G"
             }
-            else if p.gravity != "unknown" || p.gravity != "N/A" {
+            else if p.gravity != "unknown" && p.gravity != "N/A" {
                 lblGravity.text = p.gravity + " Gs"
             }else{
                 lblGravity.text = p.gravity
                 
             }
-            if p.population != "unknown" || p.population != "N/A" {
+            if p.population != "unknown" && p.population != "N/A" {
                 lblPopulation.text = (Int(p.population)?.formattedWithSeparator)!
             }else{
                 lblPopulation.text = p.population
                 
             }
-            if p.diameter != "unknown" || p.surface_water != "N/A" {
+            if p.surface_water != "unknown" && p.surface_water != "N/A" {
                 lblSurfaceWater.text = (Int(p.surface_water)?.formattedWithSeparator)! + "%"
             }else{
                 lblSurfaceWater.text = p.surface_water
